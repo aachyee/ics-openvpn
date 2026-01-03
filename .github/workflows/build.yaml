@@ -12,6 +12,7 @@ jobs:
           target: [UiOvpn23] # SkeletonOvpn2, UiOvpn2
     name: "Release ${{ matrix.target }}"
     runs-on: ubuntu-latest
+    timeout-minutes: 90 # maximum execution time is 6 hours. https://docs.github.com/en/actions/reference/limits
     steps:
       - name: Use debug signing
         run: mkdir -p ~/.gradle && echo -e "icsopenvpnDebugSign=true\norg.gradle.jvmargs=-Xmx4096M -XX:+UseParallelGC" > ~/.gradle/gradle.properties
@@ -31,7 +32,7 @@ jobs:
         run: ./gradlew assemble${{ matrix.target }}Release
       - name: Run Unit tests
         run: ./gradlew test${{ matrix.target }}ReleaseUnitTest
-
+        timeout-minutes: 60
       - name: Archive apk artifact
         uses: actions/upload-artifact@v4
         with:
