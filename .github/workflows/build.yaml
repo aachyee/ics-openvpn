@@ -34,7 +34,7 @@ jobs:
         run: ./gradlew test${{ matrix.target }}ReleaseUnitTest
         timeout-minutes: 60
       - name: Archive apk artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4 # https://github.com/actions/upload-artifact
         with:
           name: build-${{matrix.target}}-release-apk
           path: main/build/outputs/apk/**/*universal*.apk
