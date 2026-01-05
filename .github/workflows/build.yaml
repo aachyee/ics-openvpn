@@ -15,7 +15,7 @@ jobs:
     timeout-minutes: 90 # maximum execution time is 6 hours. https://docs.github.com/en/actions/reference/limits
     steps:
       - name: Use debug signing
-        run: mkdir -p ~/.gradle && echo -e "icsopenvpnDebugSign=true\norg.gradle.jvmargs=-Xmx4096M -XX:+UseParallelGC" > ~/.gradle/gradle.properties
+        run: mkdir -p ~/.gradle && echo -e "icsopenvpnDebugSign=true\norg.gradle.jvmargs=-Xmx2048M -XX:+UseParallelGC" > ~/.gradle/gradle.properties
       - name: Checkout the code
         uses: actions/checkout@v4
         with:
