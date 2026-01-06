@@ -15,7 +15,7 @@ jobs:
           target: [UiOvpn23] # SkeletonOvpn2, UiOvpn2
     permissions:
       contents: write # Important: This permission is required to create/update releases and upload assets
-    name: "Release ${{ matrix.target }}"
+#    name: "Release ${{ matrix.target }}"
     runs-on: ubuntu-latest
     steps:
       - name: Use debug signing
