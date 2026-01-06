@@ -1,0 +1,20 @@
+# pull_request vs. pull_request_target: 
+# The pull_request event is generally preferred for running CI checks safely on the head branch's code.
+# The pull_request_target event runs on the base branch and should be used with extreme caution due to 
+# potential security risks. For more details, consult the official
+# https://docs.github.com/actions/learn-github-actions/events-that-trigger-workflows
+# Using GitHub Actions on pull requests - Graphite
+# https://graphite.com/guides/github-actions-on-pull-requests
+
+name: CI on Pull Request
+on:
+  pull_request: # or pull_request_target
+#    types: [opened, synchronize, reopened, closed]
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run build/test script
+        run: echo "This workflow runs when a pull request event occurs."
