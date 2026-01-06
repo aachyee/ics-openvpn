@@ -7,11 +7,12 @@ on:
 
 
   workflow_dispatch:
-    inputs:
-      body:
-        default: ""
-      test:
-        default: "false"
+#    inputs:
+#      body:
+#        default: ""
+#      test:
+#        default: "false"
+
 #  pull_request_target: 
 #  workflow_dispatch:
 #    inputs:
@@ -46,6 +47,18 @@ jobs:
 #    name: "Release ${{ matrix.target }}"
 #    runs-on: ubuntu-latest
     steps:
+      - name: check ref
+        run : echo "github.ref:"${{ github.ref }}
+      - name: check ref_name
+        run : echo "github.ref_name:"${{ github.ref_name }}
+
+#        run: |
+#          BRANCH_NAME="${{ github.ref_name }}"
+#          if [ "$BRANCH_NAME" != "main" ]; then
+#            echo "::error::この workflow は main ブランチで実行する必要があります。現在のブランチ: $BRANCH_NAME"
+#            #exit 1
+#          fi
+#          echo "ブランチの検証結果: main ブランチで実施されています。"
       - name: Use debug signing
         run: mkdir -p ~/.gradle && echo -e "icsopenvpnDebugSign=true\norg.gradle.jvmargs=-Xmx2048M" > ~/.gradle/gradle.properties
       - name: Checkout the code
